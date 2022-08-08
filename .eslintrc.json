@@ -1,0 +1,53 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "import"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "airbnb-typescript",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:react-hooks/recommended"
+    ],
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "rules": {
+        "import/prefer-default-export": 0,
+        "indent": "off",
+        "@typescript-eslint/indent": [
+            "error",
+            4
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 120
+            }
+        ],
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "interface",
+                "format": [
+                    "PascalCase"
+                ],
+                "prefix": [
+                    "I"
+                ]
+            }
+        ],
+        "eqeqeq": [
+            "warn",
+            "always"
+        ],
+        "no-eval": "error",
+        "no-debugger": "error",
+        "no-console": "error",
+        "react/jsx-filename-extension": 0
+    }
+}
