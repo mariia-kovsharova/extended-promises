@@ -1,7 +1,7 @@
 {
-  "name": "@fiorsaoirse/promises-external",
+  "name": "@fiorsaoirse/extended-promises",
   "version": "0.0.1",
-  "description": "The tiny library that contains the external API for working with promises",
+  "description": "The extended API for working with a collection of promises",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -21,7 +21,9 @@
   },
   "keywords": [
     "promises",
-    "external"
+    "extended",
+    "library",
+    "collection"
   ],
   "author": "Maria Kovsharova",
   "license": "ISC",
@@ -35,10 +37,11 @@
     "@babel/preset-typescript": "^7.18.6",
     "@types/jest": "^28.1.6",
     "@types/node": "^18.6.4",
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.32.0",
     "babel-jest": "^28.1.3",
     "eslint": "^8.21.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "jest": "^28.1.3",
     "ts-jest": "^28.0.7",
     "typescript": "^4.7.4"
