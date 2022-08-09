@@ -2,8 +2,11 @@ declare global {
     interface PromiseConstructor {
         /**
          * 
-         * @param promises the array of promises to process
-         * @returns the array of promises filtered by predicate (if all promises have been fulfilled)
+         * @param promises an array of promises to process
+         * @param predicateFunction a predicate function
+         * @returns 
+         *  * a fulfilled promise with an array of filtered promises, if all the promises were fulfilled
+         *  * a rejected promise with the reason for the first rejected promise
          */
         filter<T>(
             promises: ReadonlyArray<Promise<T> | PromiseLike<T>>,

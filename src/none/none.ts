@@ -6,8 +6,8 @@ declare global {
          * 
          * @param promises the array of promises to process
          * @returns 
-         * * fulfilled promise with the array of reasons of promises in the same order, if every promise has been rejected
-         * * rejected promise with the value of the first fulfilled promise
+         * * a fulfilled promise with an array that contains reasons in the same order, if all the promises were rejected
+         * * a rejected promise, if at least one of the promises was fulfilled
          */
         none<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<unknown> | T>;
     }

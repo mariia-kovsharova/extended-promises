@@ -1,12 +1,12 @@
 declare global {
     interface PromiseConstructor {
         /**
-         * @description equivalent of Promise.all
-         * @param promises the array of promises to process
-         * @returns 
-         * * fulfilled promise with the array of results of promises in the same order, if every promise has been fulfilled
-         * * rejected promise with the reason of the first rejected promise
-         */
+          * @description an equivalent of Promise.all
+          * @param promises an array of promises to process
+          * @returns 
+          * * a fulfilled promise with a result array of the promises in the same order, if every promise has been fulfilled
+          * * a rejected promise with the reason for the first rejected promise
+          */
         every<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<T> | unknown>;
     }
 }

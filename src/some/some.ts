@@ -3,12 +3,12 @@ export { };
 declare global {
     interface PromiseConstructor {
         /**
-         * 
-         * @param promises the array of promises to process
-         * @returns 
-         * * fulfilled promise with the array of result of promise or null (if promise has been rejected) in the same order, if one of promises has been fulfilled
-         * * rejected promise if all the promises have been rejected
-         */
+        * 
+        * @param promises the array of promises to process
+        * @returns 
+        * * a fulfilled promise with an array that contains the result or null value of the promises in the same order, if at least one of the promises was fulfilled
+        * * a rejected promise, if all the promises were rejected
+        */
         some<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<T | null> | unknown>;
     }
 }

@@ -2,11 +2,10 @@ declare global {
     interface PromiseConstructor {
         /**
          * 
-         * @param promises the array of promises to process
+         * @param promises an array of promises to process
          * @returns 
-         * * fulfilled promise with the result of the first fulfilled promise
-         * * rejected promise with an array of reasons for all rejected promises
-         * in the same order, if every promise has been
+         * * a fulfilled promise with the result of the first fulfilled promise
+         * * a rejected promise with an array of reasons, if all the promises were rejected
          */
         first<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<T | ReadonlyArray<unknown>>;
     }
@@ -34,6 +33,7 @@ if (!Promise.first) {
                             /**
                              * Whatever we resolve the top-level promise,
                              * here we have to return the accumulator without any modification
+                             * to avoid typing error
                              */
                             return reasons;
                         })

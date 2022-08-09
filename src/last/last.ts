@@ -41,7 +41,7 @@ if (!Promise.last) {
                             /**
                              * Whatever the promise is fulfilled,
                              * here we have to return the accumulator without any modification
-                             * to avoid the "undefined" return as accumulator
+                             * to avoid the "undefined" promise return as accumulator instead list of reasons
                              */
                             return reasons;
                         })

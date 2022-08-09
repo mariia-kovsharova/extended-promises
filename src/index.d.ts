@@ -1,18 +1,21 @@
 declare global {
     interface PromiseConstructor {
         /**
-         * @description equivalent of Promise.all
-         * @param promises the array of promises to process
-         * @returns 
-         * * fulfilled promise with the array of results of promises in the same order, if every promise has been fulfilled
-         * * rejected promise with the reason of the first rejected promise
-         */
+          * @description an equivalent of Promise.all
+          * @param promises an array of promises to process
+          * @returns 
+          * * a fulfilled promise with a result array of the promises in the same order, if every promise was fulfilled
+          * * a rejected promise with the reason for the first rejected promise
+          */
         every<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<T> | unknown>;
 
         /**
          * 
-         * @param promises the array of promises to process
-         * @returns the array of filtered promises if all promises have been fulfilled
+         * @param promises an array of promises to process
+         * @param predicateFunction a predicate function
+         * @returns 
+         *  * a fulfilled promise with an array of filtered promises, if all the promises were fulfilled
+         *  * a rejected promise with the reason for the first rejected promise
          */
         filter<T>(
             promises: ReadonlyArray<Promise<T> | PromiseLike<T>>,
@@ -21,11 +24,10 @@ declare global {
 
         /**
          * 
-         * @param promises the array of promises to process
+         * @param promises an array of promises to process
          * @returns 
-         * * fulfilled promise with the result of the first fulfilled promise
-         * * rejected promise with an array of reasons for all rejected promises
-         * in the same order, if every promise has been
+         * * a fulfilled promise with the result of the first fulfilled promise
+         * * a rejected promise with an array of reasons, if all the promises were rejected
          */
         first<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<T | ReadonlyArray<unknown>>;
 
@@ -41,9 +43,11 @@ declare global {
 
         /**
          * 
-         * @param promises the array of promises to process
+         * @param promises an array of promises to process
+         * @param transformFunction a transformation function
          * @returns 
-         * * the array of transformed promises if all promises have been fulfilled
+         *  * a fulfilled promise with an array of transformed promises, if all the promises have been fulfilled
+         *  * a rejected promise with the reason for the first rejected promise
          */
         map<T, R>(
             promises: ReadonlyArray<Promise<T> | PromiseLike<T>>,
@@ -54,8 +58,8 @@ declare global {
          * 
          * @param promises the array of promises to process
          * @returns 
-         * * fulfilled promise with the array of reasons of promises in the same order, if every promise has been rejected
-         * * rejected promise with the value of the first fulfilled promise
+         * * a fulfilled promise with an array that contains reasons in the same order, if all the promises were rejected
+         * * a rejected promise, if at least one of the promises was fulfilled
          */
         none<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<unknown> | T>;
 
@@ -63,8 +67,8 @@ declare global {
         * 
         * @param promises the array of promises to process
         * @returns 
-        * * fulfilled promise with the array of result of promise or null (if promise has been rejected) in the same order, if one of promises has been fulfilled
-        * * rejected promise if all the promises have been rejected
+        * * a fulfilled promise with an array that contains the result or null value of the promises in the same order, if at least one of the promises was fulfilled
+        * * a rejected promise, if all the promises were rejected
         */
         some<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<T | null> | unknown>;
     }

@@ -4,9 +4,11 @@ declare global {
     interface PromiseConstructor {
         /**
          * 
-         * @param promises the array of promises to process
+         * @param promises an array of promises to process
+         * @param transformFunction a transformation function
          * @returns 
-         * * the array of transformed promises if all promises have been fulfilled
+         *  * a fulfilled promise with an array of transformed promises, if all the promises have been fulfilled
+         *  * a rejected promise with the reason for the first rejected promise
          */
         map<T, R>(
             promises: ReadonlyArray<Promise<T> | PromiseLike<T>>,
