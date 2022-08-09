@@ -1,16 +1,3 @@
-declare global {
-    interface PromiseConstructor {
-        /**
-         * 
-         * @param promises an array of promises to process
-         * @returns 
-         * * a fulfilled promise with the result of the first fulfilled promise
-         * * a rejected promise with an array of reasons, if all the promises were rejected
-         */
-        first<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<T | ReadonlyArray<unknown>>;
-    }
-}
-
 if (!Promise.first) {
     Promise.first = function <T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<T | ReadonlyArray<unknown>> {
         // Top-level main promise
@@ -20,7 +7,7 @@ if (!Promise.first) {
                 (
                     reasons: Promise<Array<unknown>>,
                     currentPromise: Promise<T> | PromiseLike<T>,
-                    index: number
+                    index: number,
                 ): Promise<Array<unknown>> => {
                     const trustedPromise = Promise.resolve(currentPromise);
                     return trustedPromise
@@ -46,9 +33,9 @@ if (!Promise.first) {
                                 previousReasons[index] = reason;
                                 return previousReasons;
                             });
-                        })
+                        });
                 },
-                Promise.resolve<Array<unknown>>(new Array(len))
+                Promise.resolve<Array<unknown>>(new Array(len)),
             );
 
             reducedPromise.then((reasons: ReadonlyArray<unknown>) => {
@@ -58,8 +45,9 @@ if (!Promise.first) {
                  */
                 reject(reasons);
             });
-        })
-    }
+        });
+    };
 }
 
-export default global;
+export { };
+

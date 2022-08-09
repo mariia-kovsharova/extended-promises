@@ -1,16 +1,3 @@
-declare global {
-    interface PromiseConstructor {
-        /**
-          * @description an equivalent of Promise.all
-          * @param promises an array of promises to process
-          * @returns 
-          * * a fulfilled promise with a result array of the promises in the same order, if every promise has been fulfilled
-          * * a rejected promise with the reason for the first rejected promise
-          */
-        every<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<T> | unknown>;
-    }
-}
-
 if (!Promise.every) {
     Promise.every = function <T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<T> | unknown> {
         // Top-level main promise
@@ -20,7 +7,7 @@ if (!Promise.every) {
                 (
                     fulfilledPromises: Promise<Array<T>>,
                     currentPromise: Promise<T> | PromiseLike<T>,
-                    index: number
+                    index: number,
                 ): Promise<Array<T>> => {
                     const trustedPromise = Promise.resolve(currentPromise);
                     return trustedPromise
@@ -43,9 +30,9 @@ if (!Promise.every) {
                              * to avoid reduce error
                              */
                             return fulfilledPromises;
-                        })
+                        });
                 },
-                Promise.resolve<Array<T>>(new Array(len))
+                Promise.resolve<Array<T>>(new Array(len)),
             );
 
             reducedPromise.then((resultArray: ReadonlyArray<T>) => {
@@ -55,8 +42,9 @@ if (!Promise.every) {
                  */
                 resolve(resultArray);
             });
-        })
-    }
+        });
+    };
 }
 
-export default global;
+export { };
+

@@ -23,22 +23,10 @@
             4
         ],
         "max-len": [
-            "error",
-            {
-                "code": 120
-            }
+            "off"
         ],
         "@typescript-eslint/naming-convention": [
-            "error",
-            {
-                "selector": "interface",
-                "format": [
-                    "PascalCase"
-                ],
-                "prefix": [
-                    "I"
-                ]
-            }
+            "off"
         ],
         "eqeqeq": [
             "warn",

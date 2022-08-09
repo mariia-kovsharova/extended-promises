@@ -1,18 +1,3 @@
-export { };
-
-declare global {
-    interface PromiseConstructor {
-        /**
-         * 
-         * @param promises the array of promises to process
-         * @returns 
-         * * a fulfilled promise with an array that contains reasons in the same order, if all the promises were rejected
-         * * a rejected promise, if at least one of the promises was fulfilled
-         */
-        none<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<unknown> | T>;
-    }
-}
-
 if (!Promise.none) {
     Promise.none = function <T>(promises: Array<Promise<T> | PromiseLike<T>>) {
         // Top-level promise
@@ -23,7 +8,7 @@ if (!Promise.none) {
                 (
                     reasons: Promise<Array<unknown>>,
                     promise: Promise<T> | PromiseLike<T>,
-                    index: number
+                    index: number,
                 ): Promise<Array<unknown>> => {
                     const trustedPromise = Promise.resolve(promise);
                     return trustedPromise
@@ -40,15 +25,17 @@ if (!Promise.none) {
                             return reasons.then((previousReasons: Array<unknown>) => {
                                 previousReasons[index] = reason;
                                 return previousReasons;
-                            })
+                            });
                         });
                 },
-                Promise.resolve<Array<unknown>>(new Array(len))
+                Promise.resolve<Array<unknown>>(new Array(len)),
             );
 
             reducePromise.then((reasons: Array<unknown>) => {
                 resolve(reasons);
             });
         });
-    }
+    };
 }
+
+export { };

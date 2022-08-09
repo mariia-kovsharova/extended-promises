@@ -7,6 +7,7 @@
     "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "CommonJS",
@@ -15,11 +16,12 @@
     "baseUrl": ".",
     "typeRoots": [
       "node_modules/@types",
-      "src/index.d.ts"
-    ]
+      "src/types"
+    ],
+    "declaration": true
   },
   "include": [
-    "src"
+    "src",
   ],
   "exclude": [
     "node_modules",
