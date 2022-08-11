@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fiorsaoirse/promises-external.git"
+    "url": "git+https://github.com/fiorsaoirse/extended-promises.git"
   },
   "keywords": [
     "promises",
@@ -30,9 +30,9 @@
   "author": "Maria Kovsharova",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fiorsaoirse/promises-external/issues"
+    "url": "https://github.com/fiorsaoirse/extended-promises/issues"
   },
-  "homepage": "https://github.com/fiorsaoirse/promises-external#readme",
+  "homepage": "https://github.com/fiorsaoirse/extended-promises#readme",
   "devDependencies": {
     "@babel/core": "^7.18.10",
     "@babel/preset-env": "^7.18.10",
