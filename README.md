@@ -7,7 +7,7 @@ Extended API for working with a collection of promises.
 
 Then, in your code:
 
->     import extendedPromises from 'extended-promises';
+>     import 'extended-promises';
 
 Ta-daa! Now you can use the library methods, you are amazing!
 

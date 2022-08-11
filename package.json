@@ -2,8 +2,8 @@
   "name": "extended-promises",
   "version": "0.0.1",
   "description": "The extended API for working with a collection of promises",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "test-leaks": "jest --detectOpenHandles",
@@ -13,6 +13,7 @@
     "lint:src:fix": "npm run lint:src -- --fix",
     "lint:ts": "tsc --noEmit",
     "lint:ts:w": "npm run lint:ts -- --watch",
+    "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint"
   },
