@@ -339,5 +339,5 @@ if (!Promise.some) {
     };
 }
 
-export { };
+export default {};
 
