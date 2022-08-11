@@ -1,5 +1,7 @@
+export { };
+
 declare global {
-    interface PromiseConstructor {
+    interface Promise<T> {
         /**
           * @description an equivalent of Promise.all
           * @param promises an array of promises to process
@@ -72,7 +74,7 @@ declare global {
         */
         some<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<T | null> | unknown>;
     }
-}
 
-export { };
+    var Promise: PromiseConstructor;
+}
 

@@ -18,6 +18,10 @@
     "rules": {
         "import/prefer-default-export": 0,
         "indent": "off",
+        "no-var": "off",
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-var": "off",
         "@typescript-eslint/indent": [
             "error",
             4

@@ -16,12 +16,16 @@
     "baseUrl": ".",
     "typeRoots": [
       "node_modules/@types",
-      "src/types"
+      "index.d.ts"
     ],
     "declaration": true
   },
+  "files": [
+    "./index.d.ts"
+  ],
   "include": [
     "src",
+    "./index.d.ts",
   ],
   "exclude": [
     "node_modules",

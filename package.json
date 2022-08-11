@@ -1,8 +1,9 @@
 {
-  "name": "@fiorsaoirse/extended-promises",
+  "name": "extended-promises",
   "version": "0.0.1",
   "description": "The extended API for working with a collection of promises",
   "main": "index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "test": "jest",
     "test-leaks": "jest --detectOpenHandles",
