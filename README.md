@@ -21,7 +21,7 @@ An equivalent of Promise.all.
     * a fulfilled promise with a results array of the promises in the same order, if every promise was fulfilled
     * a rejected promise with the reason for the first rejected promise
 
-##### Promise.some
+#### Promise.some
 * **Params**:
     * an array of promises
 * **Returns**:
@@ -64,3 +64,10 @@ An equivalent of Promise.all.
 * **Returns**:
     * a fulfilled promise with an array of transformed promises, if all the promises have been fulfilled
     * a rejected promise with the reason for the first rejected promise
+
+#### Promise.timeout
+* **Params**:
+    * the single promise or the array of promises to process
+* **Returns**:
+    * a fulfilled promise with the result OR the rejection reason of the promise (promises)
+    * a rejected promise, if the timeout completes first

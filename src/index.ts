@@ -70,7 +70,15 @@ declare global {
         * * a fulfilled promise with an array that contains the result or null value of the promises in the same order, if at least one of the promises was fulfilled
         * * a rejected promise, if all the promises were rejected
         */
-        some<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<T | null> | unknown>;
+        some<T>(promises: ReadonlyArray<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<T | null> | null>;
+        /**
+        * 
+        * @param promise the single promise or the array of promises to process
+        * @returns 
+        * * a fulfilled promise with the result OR the rejection reason of the promise (promises)
+        * * a rejected promise, if the timeout completes first
+        */
+        timeout<T>(promise: Promise<T> | PromiseLike<T> | ReadonlyArray<Promise<T> | PromiseLike<T>>, timeout: number): Promise<T | ReadonlyArray<T | null> | null | unknown | string>;
     }
 }
 
@@ -295,7 +303,7 @@ if (!Promise.none) {
 }
 
 if (!Promise.some) {
-    Promise.some = function <T>(promises: Array<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<T | null> | unknown> {
+    Promise.some = function <T>(promises: Array<Promise<T> | PromiseLike<T>>): Promise<ReadonlyArray<T | null> | null> {
         // Top-level promise
         return new Promise((resolve, reject) => {
             const len = promises.length;
@@ -330,10 +338,44 @@ if (!Promise.some) {
 
             reducedPromise.then((values: Array<T | null>) => {
                 if (!fulfilledCount) {
-                    reject();
+                    reject(null);
                 } else {
                     resolve(values);
                 }
+            });
+        });
+    };
+}
+
+if (!Promise.timeout) {
+    Promise.timeout = function <T>(
+        promise: Promise<T> | PromiseLike<T> | ReadonlyArray<Promise<T> | PromiseLike<T>>,
+        timeout: number,
+    ): Promise<T | ReadonlyArray<T | null> | null | unknown | string> {
+        // Top-level promise
+        return new Promise((resolve, reject) => {
+            let trustedPromise: Promise<T | ReadonlyArray<T | null> | null>;
+
+            if (Array.isArray(promise)) {
+                trustedPromise = Promise.some<T>(promise);
+            } else {
+                trustedPromise = Promise.resolve<T>(promise as Promise<T> | PromiseLike<T>);
+            }
+
+            Promise.race([
+                trustedPromise
+                    .catch((reason: unknown) => {
+                        return reason;
+                    }),
+                new Promise<string>((_tResolve, tReject) => {
+                    setTimeout(() => {
+                        tReject('Error: timeout!');
+                    }, timeout);
+                }),
+            ]).then((value: T | ReadonlyArray<T | null> | null | unknown) => {
+                resolve(value);
+            }).catch((timeoutResult: string) => {
+                reject(timeoutResult);
             });
         });
     };
