@@ -74,6 +74,7 @@ declare global {
         /**
         * 
         * @param promise the single promise or the array of promises to process
+        * @param timeout the timeout, in ms
         * @returns 
         * * a fulfilled promise with the result OR the rejection reason of the promise (promises)
         * * a rejected promise, if the timeout completes first

@@ -68,6 +68,7 @@ An equivalent of Promise.all.
 #### Promise.timeout
 * **Params**:
     * the single promise or the array of promises to process
+    * the timeout, in ms
 * **Returns**:
     * a fulfilled promise with the result OR the rejection reason of the promise (promises)
     * a rejected promise, if the timeout completes first
